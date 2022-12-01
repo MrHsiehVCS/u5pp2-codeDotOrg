@@ -56,7 +56,15 @@ public class BishopTests {
     }
 
     @Test
-    // TODO: add tests for canMove returnsFalse
+    public void Bishop_canMoveOrthogonally_returnsFalse() {
+        board[5][5] = new Bishop(board, 5, 5, false);
+        assertFalse(board[5][5].canMoveTo(4, 5), "Bishops should only be able to move diagonally.");
+        assertFalse(board[5][5].canMoveTo(5,4), "Bishops should only be able to move diagonally.");
+        assertFalse(board[5][5].canMoveTo(6, 5), "Bishops should only be able to move diagonally.");
+        assertFalse(board[5][5].canMoveTo(5, 6), "Bishops should only be able to move diagonally.");
+    }
+
+    @Test
     public void Bishop_canMoveManySpaces_returnsTrue(){
         board = new ChessPiece[8][8];
         board[5][5] = new Bishop(board, 5,5, true);
@@ -101,10 +109,10 @@ public class BishopTests {
     }
 
     @Test
-    // TODO: add tests for taking a piece properly on doMove
     public void Bishop_doMove_changesBoard() {
         ChessPiece botBishop = board[0][0];
         ChessPiece topBishop = board[7][0];
+        board[1][1] = new ChessPiece(board, 1, 1, false);
         board[0][0].moveTo(1, 1);
         board[7][0].moveTo(6, 1);
         assertAll(

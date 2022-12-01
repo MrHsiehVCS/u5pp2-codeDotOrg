@@ -97,6 +97,29 @@ public class QueenTests {
         assertAll( tests );
     }
 
+    @Test
+    public void Queen_canMoveToWrongSpaces_returnsFalse() {
+
+        board = new ChessPiece[8][8];
+        board[5][5] = new Queen(board, 5, 5, false);
+
+        for(int r = 0; r < 8; r++ ) {
+            for(int c = 0; c < 8; c++) {
+                if(r == 5 || c == 5) {
+                    continue;
+                }
+                int rDiff = Math.abs(r - 5);
+                int cDiff = Math.abs(c - 5);
+                if(rDiff == cDiff) {
+                    continue;
+                }
+
+                assertFalse(board[5][5].canMoveTo(r, c), 
+                String.format("queen at e5 should not be able to move to row %d col %d", r, c));
+            }
+        }
+    }
+
 
     @Test
     public void Queen_moveWhenTaking_returnsTrue() {

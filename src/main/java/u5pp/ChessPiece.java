@@ -13,6 +13,22 @@ public class ChessPiece {
         this.isWhite = isWhite;
     }
 
+    public ChessPiece[][] getBoard() {
+        return board;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return col;
+    }
+
+    public boolean getIsWhite() {
+        return isWhite;
+    }
+
     public boolean canMoveTo(int row, int col) {
         if(row == this.row && col == this.col) {
             // cannot move onto self
@@ -30,18 +46,13 @@ public class ChessPiece {
         return true;
     }
 
-    public boolean moveTo(int row, int col) {
+    public void moveTo(int row, int col) {
         int oldRow = this.row;
         int oldCol = this.col;
         board[row][col] = this;
         board[oldRow][oldCol] = null;
         this.row = row;
         this.col = col;
-        return true;
-    }
-
-    public boolean getIsWhite() {
-        return isWhite;
     }
 
     @Override

@@ -55,6 +55,21 @@ public class RookTests {
     }
 
     @Test
+    public void Rook_canMoveNoneOrthogonally_returnsFalse() {
+        board[0][0] = null;
+        board[7][0] = null;
+        board[4][4] = new Rook(board, 4, 4, false);
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                if(r != 4 && c != 4) {
+                    assertFalse(board[4][4].canMoveTo(r, c), 
+                    String.format("Rook at "));
+                }
+            }
+        }
+    }
+
+    @Test
     public void Rook_canMoveManySpaces_returnsTrue(){
         board = new ChessPiece[8][8];
         board[5][5] = new Rook(board, 5,5, true);

@@ -10,14 +10,14 @@ public class PawnTests {
     @BeforeEach
     public void beforeEach() {
         board = new ChessPiece[8][8];
-        board[0][0] = new Pawn(board, 0, 0, false);
-        board[7][0] = new Pawn(board, 7, 0, true);
+        board[0][0] = new Pawn(board, 0, 0, true);
+        board[7][0] = new Pawn(board, 7, 0, false);
     }
 
     @Test
     public void Pawn_canMoveOOB_returnsFalse() {
-        board[0][7] = new Pawn(board, 0, 7,false);
-        board[7][7] = new Pawn(board, 7, 7, true);
+        board[0][7] = new Pawn(board, 0, 7,true);
+        board[7][7] = new Pawn(board, 7, 7, false);
         assertAll(
             () -> assertFalse(board[0][7].canMoveTo(-1, 7), "Pawn should not be able to move out of bounds."),
             () -> assertFalse(board[7][7].canMoveTo(8, 7), "Pawn should not be able to move out of bounds."),
@@ -28,8 +28,8 @@ public class PawnTests {
 
     @Test
     public void Pawn_canMoveSameSquare_returnsFalse() {
-        board[0][7] = new Pawn(board, 0, 7, false);
-        board[7][7] = new Pawn(board, 7, 7, true);
+        board[0][7] = new Pawn(board, 0, 7, true);
+        board[7][7] = new Pawn(board, 7, 7, false);
         assertAll(
             () -> assertFalse(board[0][7].canMoveTo(0, 7), "Pawn should not be able to move onto current square."),
             () -> assertFalse(board[7][7].canMoveTo(7, 7), "Pawn should not be able to move onto current square.")
@@ -46,8 +46,8 @@ public class PawnTests {
 
     @Test
     public void Pawn_canMoveOneSpaceBackward_returnsFalse() {
-        board[5][1] = new Pawn(board, 0,0, false);
-        board[6][1] = new Pawn(board, 7, 0, true);
+        board[5][1] = new Pawn(board, 0,0, true);
+        board[6][1] = new Pawn(board, 7, 0, false);
         assertFalse(board[6][1].canMoveTo(7, 1));
         assertAll(
             () -> assertFalse(board[5][1].canMoveTo(4, 1), "black pawns must not be able to move backward"), 
@@ -57,11 +57,11 @@ public class PawnTests {
 
     @Test
     public void Pawn_canMoveForwardWhenBlocked_returnsFalse(){
-        board[1][0] = new Pawn(board, 1, 0, true);
-        board[6][0] = new Pawn(board, 6, 0, true);
+        board[1][0] = new Pawn(board, 1, 0, false);
+        board[5][0] = new Pawn(board, 5, 0, false);
         assertAll(
             () -> assertFalse(board[0][0].canMoveTo(1, 0), "pawns should not move forward onto other pieces"), 
-            () -> assertFalse(board[7][0].canMoveTo(6, 0), "pawns should not move forward onto other pieces") 
+            () -> assertFalse(board[7][0].canMoveTo(5, 0), "pawns should not move forward onto other pieces") 
         );
     }
 
@@ -94,8 +94,8 @@ public class PawnTests {
 
     @Test
     public void Pawn_moveDiagonalWhenTaking_returnsTrue() {
-        board[1][1] = new Pawn(board, 1, 1, true);
-        board[6][1] = new Pawn(board, 6, 1, false);
+        board[1][1] = new Pawn(board, 1, 1, false);
+        board[6][1] = new Pawn(board, 6, 1, true);
         assertAll(
             () -> assertTrue(board[0][0].canMoveTo(1, 1), "pawns should be able to move diagonal when taking"),
             () -> assertTrue(board[7][0].canMoveTo(6, 1), "pawns should be able to move diagonal when taking")
@@ -104,8 +104,8 @@ public class PawnTests {
 
     @Test
     public void Pawn_moveDiagonalOntoTeammate_returnsFalse() {
-        board[1][1] = new Pawn(board, 1, 1, false);
-        board[6][1] = new Pawn(board, 6, 1, true);
+        board[1][1] = new Pawn(board, 1, 1, true);
+        board[6][1] = new Pawn(board, 6, 1, false);
         assertAll(
             () -> assertFalse(board[0][0].canMoveTo(1, 1), "pawns should not be able to move diagonal onto a teammate"),
             () -> assertFalse(board[7][0].canMoveTo(6, 1), "pawns should not be able to move diagonal onto a teammate")
@@ -129,8 +129,8 @@ public class PawnTests {
     @Test
     public void Pawn_toString_returnsP() {
         assertAll(
-            () -> assertEquals("p", board[0][0].toString(), "toString should return P for black pawn"),
-            () -> assertEquals("P", board[7][0].toString(), "toString should return p for white pawn")
+            () -> assertEquals("p", board[7][0].toString(), "toString should return P for black pawn"),
+            () -> assertEquals("P", board[0][0].toString(), "toString should return p for white pawn")
         );
     }
 }

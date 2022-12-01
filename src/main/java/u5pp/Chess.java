@@ -19,9 +19,8 @@ public class Chess {
         myInputHelper = new InputHelper(scanner);
         // all that gameplay functionality :)
 
-        // TODO intro
-        // TODO ask for num players (1 or 2)
-        // TODO pretty UI
+        System.out.println("Welcome to Chess.");
+        
         numPlayers = 1;
         p2Name = "Computer";
 

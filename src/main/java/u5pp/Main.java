@@ -10,10 +10,7 @@ public class Main {
         "Take a look at the README, and the txt files to start\n" + 
         "Good luck!");
 
-        
         Scanner scanner = new Scanner(System.in);
-        // InputHelper ih = new InputHelper(scanner);
-        // ih.getChessLocation("input chess location");
         Chess chess = new Chess();
         chess.play(scanner);
     }

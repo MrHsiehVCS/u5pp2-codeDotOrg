@@ -87,7 +87,6 @@ public class KnightTests {
     public void Knight_canMoveToInvalidEmptySpaces_returnsFalse(){
         board = new ChessPiece[8][8];
         board[5][5] = new Knight(board, 5,5, true);
-        List<Executable> tests = new ArrayList<Executable>();
 
         for(int r = 0; r < 8; r ++) {
             for(int c = 0; c < 8; c++) {
@@ -95,15 +94,11 @@ public class KnightTests {
                 int rDiff = Math.abs(r-5);
                 int cDiff = Math.abs(c-5);
                 if(rDiff + cDiff != 3 || Math.abs(rDiff - cDiff) != 1) {
-                    final int rFinal = r; 
-                    final int cFinal = c; 
-                    tests.add(
-                        () -> assertFalse(board[5][5].canMoveTo(rFinal, cFinal), "Knight cannot move to squares that are not a 3 square 'L' away.")
-                    );
+                    assertFalse(board[5][5].canMoveTo(r, c), 
+                    String.format("Knight at e5 should not be able to row %d column %d", r, c));
                 }
             }
         }
-        assertAll( tests );
     }
 
     @Test
@@ -113,12 +108,10 @@ public class KnightTests {
         board[2][1] = new Pawn(board, 2, 1, true);
         board[5][1] = new Pawn(board, 5, 1, false);
         board[6][2] = new Pawn(board, 6, 2, false);
-        assertAll(
-            () -> assertTrue(board[0][0].canMoveTo(1, 2), "Knights should be able to move when taking"),
-            () -> assertTrue(board[0][0].canMoveTo(2, 1), "Knights should be able to move when taking"),
-            () -> assertTrue(board[7][0].canMoveTo(5, 1), "Knights should be able to move when taking"),
-            () -> assertTrue(board[7][0].canMoveTo(6, 2), "Knights should be able to move when taking")
-        );
+        assertTrue(board[0][0].canMoveTo(1, 2), "Knights should be able to move when taking");
+        assertTrue(board[0][0].canMoveTo(2, 1), "Knights should be able to move when taking");
+        assertTrue(board[7][0].canMoveTo(5, 1), "Knights should be able to move when taking");
+        assertTrue(board[7][0].canMoveTo(6, 2), "Knights should be able to move when taking");
     }
 
     @Test
