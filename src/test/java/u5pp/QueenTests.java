@@ -47,10 +47,14 @@ public class QueenTests {
 
     @Test
     public void Queen_canMoveThroughPiece_returnsFalse() {
+        board[1][1] = new Queen(board, 1, 1, false);
+        board[6][1] = new Queen(board, 6, 1, false);
         board[4][0] = new Queen(board, 4, 0, false);
         assertAll(
             () -> assertFalse(board[0][0].canMoveTo(5, 0), "Queens should not move through other pieces"), 
-            () -> assertFalse(board[7][0].canMoveTo(2, 0), "Queens should not move through other pieces") 
+            () -> assertFalse(board[7][0].canMoveTo(2, 0), "Queens should not move through other pieces"),
+            () -> assertFalse(board[0][0].canMoveTo(5, 5), "Bishops should not move through other pieces"), 
+            () -> assertFalse(board[7][0].canMoveTo(3, 4), "Bishops should not move through other pieces") 
         );
     }
 
