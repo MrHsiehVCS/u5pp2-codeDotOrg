@@ -22,8 +22,16 @@ public class Bishop extends ChessPiece {
         // must not go through another piece
         int rMin = Math.min(r, getRow());
         int cMin = Math.min(c, getColumn());
+        int cMax = Math.max(c, getColumn());
         for(int i = 1; i < rDiff; i++) {
-            if(getBoard()[rMin + i][cMin + i] != null) {
+            int rCheck = rMin + i;
+            int cCheck;
+            if(r > getRow() == c > getColumn()) {
+                cCheck = cMin + i;
+            } else {
+                cCheck = cMax - i;
+            }
+            if(getBoard()[rCheck][cCheck] != null) {
                 return false;
             }
         }
