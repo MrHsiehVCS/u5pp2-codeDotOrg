@@ -50,8 +50,8 @@ public class BishopTests {
         board[1][1] = new Bishop(board, 1, 1, false);
         board[6][1] = new Bishop(board, 6, 1, false);
         assertAll(
-            () -> assertFalse(board[0][0].canMoveTo(2, 2), "Bishops should not move through other pieces"), 
-            () -> assertFalse(board[7][0].canMoveTo(5, 2), "Bishops should not move through other pieces") 
+            () -> assertFalse(board[0][0].canMoveTo(5, 5), "Bishops should not move through other pieces"), 
+            () -> assertFalse(board[7][0].canMoveTo(3, 4), "Bishops should not move through other pieces") 
         );
     }
 
