@@ -10,8 +10,5 @@ public class Main {
         "Take a look at the README, and the txt files to start\n" + 
         "Good luck!");
 
-        Scanner scanner = new Scanner(System.in);
-        Chess chess = new Chess();
-        chess.play(scanner);
     }
 }
