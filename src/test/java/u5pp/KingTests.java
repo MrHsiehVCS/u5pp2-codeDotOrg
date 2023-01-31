@@ -102,13 +102,6 @@ public class KingTests {
     }
 
     @Test
-    public void King_toString_returnsK() {
-        assertAll(
-                () -> assertEquals("k", board[0][0].toString(), "toString should return K for white King"),
-                () -> assertEquals("K", board[7][0].toString(), "toString should return k for black King"));
-    }
-
-    @Test
     public void King_moveNextToOtherKing_returnsFalse() {
         // teleport white king next to black king
         board[7][0] = null;
@@ -118,6 +111,13 @@ public class KingTests {
                 () -> assertFalse(board[0][0].canMoveTo(1, 1), "Kings should not be able to move next to other kings"),
                 () -> assertFalse(board[1][2].canMoveTo(0, 1), "Kings should not be able to move next to other kings"),
                 () -> assertFalse(board[1][2].canMoveTo(1, 1), "Kings should not be able to move next to other kings"));
+    }
+
+    @Test
+    public void King_toString_returnsK() {
+        assertAll(
+                () -> assertEquals("k", board[0][0].toString(), "toString should return k for white King"),
+                () -> assertEquals("K", board[7][0].toString(), "toString should return K for black King"));
     }
 
 }

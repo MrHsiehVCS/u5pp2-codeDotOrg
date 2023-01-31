@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Chess {
 
-
     /**
      * Used to print a chess board out.
      */

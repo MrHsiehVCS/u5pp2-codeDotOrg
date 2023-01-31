@@ -129,8 +129,8 @@ public class PawnTests {
     @Test
     public void Pawn_toString_returnsP() {
         assertAll(
-            () -> assertEquals("p", board[7][0].toString(), "toString should return P for black pawn"),
-            () -> assertEquals("P", board[0][0].toString(), "toString should return p for white pawn")
+            () -> assertEquals("p", board[7][0].toString(), "toString should return p for black pawn"),
+            () -> assertEquals("P", board[0][0].toString(), "toString should return P for white pawn")
         );
     }
 }
