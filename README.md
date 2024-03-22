@@ -171,23 +171,23 @@ You will add the following method to the `InputHelper` class:
 
 ### Recommended implementation order
 
-1. Fix the project so it compiles. There are couple ways to do this.
-     - Dummy version of every class, with nearly empty version of every method, just so that everything compiles
-     - Comment out the tests that you won't be doing yet. Uncomment as you go.
-2. `ChessPiece.java` (until `mvn package` is success for all related tests)
-3. InputHelper `getChessLocation`
-4. basic version of `Chess.play()` to check your `InputHelper.getChessLocation()`, initializing the board, and moving pieces around
-     - keep using this function to test in between/during all future steps
-5. `toString()` for all the piece classes
-6. `Chess.getWinner()`
-7. `Chess.play()` (this can be completely finished even if your pieces aren't 100% done)
-8. All the other pieces
+1. Fix the project so it compiles.
+  - Recommended Method: Dummy implementation of every class, with nearly empty version of every method, just so that everything compiles (no red squiggles)
+  - Make all child classes inherit from the correct parent classes.
+3. `ChessPiece.java` 
+4. InputHelper `getChessLocation` 
+5. basic version of `Chess.play()` to check your `InputHelper.getChessLocation()`, initializing the board, and moving pieces around
+     - keep using this function to test while working on all future steps
+6. `toString()` for all the piece classes
+7. `Chess.getWinner()` (must have a `King` class created)
+8. `Chess.play()` (this can be completely finished even if your pieces aren't 100% done)
+9. All the specific pieces
 
 ### Hints
 
 - the `play()` method is pretty large. Try method decomposition (making smaller methods) to break up the work, and to make it easier to read/write.
   - Example helper methods: `initializeBoard()`, `doPlayerMove()`, `doComputerMove()`.
-  - Mr. Hsieh was able to create a `play()` method that was ~50 lines long, by using the helper methods above.
+  - Mr. Hsieh was able to create a `play()` method that was only ~50 lines long, by using the helper methods above.
 - Test as frequently as possible - every time you finish a segment of code that you can test (a line or two), just throw in a `println()` as a quick sanity check. Managing complexity this way will save **so** much debugging time in the long run.
   
 ## Extra Credit - Skipped chess rules
